@@ -51,5 +51,54 @@ namespace Ders_3.Controllers
 				return BadRequest(ex.Message);
 			}
 		}
+
+		[HttpPut("{id:int}")]
+		public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] Book book) 
+		{
+			var entity = ApplicationContext
+				.Books
+				.Find(b => b.Id.Equals(id));
+
+			if (entity is null)
+			{
+				return NotFound(); // 404
+			}
+
+            if (id != book.Id)
+            {
+				return BadRequest(); // 400
+            }
+
+			ApplicationContext.Books.Remove(entity);
+			book.Id = id;
+			ApplicationContext.Books.Add(book);
+			return Ok(book);
+
+        }
+
+		[HttpDelete]
+		public IActionResult GetDeleteAllBook()
+		{
+			ApplicationContext.Books.Clear();
+			return NoContent();
+		}
+
+		[HttpDelete("{id:int}")]
+		public IActionResult GetDeleteOneBook([FromRoute (Name = "id")] int id)
+		{
+			var entity = ApplicationContext.Books.Find(x => x.Id.Equals(id));
+
+            if (entity is null)
+            {
+				return NotFound(new
+				{
+					statusCode = 404,
+					messages = $"Book with id:{id} could not found"
+				});
+            }
+
+			ApplicationContext.Books.Remove(entity);
+			return NoContent();
+        }
 	}
 }

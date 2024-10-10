@@ -1,6 +1,7 @@
 ﻿using Ders_3.Data;
 using Ders_3.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ders_3.Controllers
@@ -99,6 +100,20 @@ namespace Ders_3.Controllers
 
 			ApplicationContext.Books.Remove(entity);
 			return NoContent();
+        }
+
+		[HttpPatch("{id:int}")]
+		public IActionResult PartiallyUpdateOneBook([FromRoute(Name ="id")] int id, [FromBody] JsonPatchDocument<Book> bookPatch)
+		{
+			var entity = ApplicationContext.Books.Find(b => b.Id.Equals(id));
+
+            if (entity is null)
+            {
+				return NotFound(); // 404
+            }
+
+			bookPatch.ApplyTo(entity);
+			return NoContent(); // 204
         }
 	}
 }

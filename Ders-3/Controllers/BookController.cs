@@ -115,5 +115,7 @@ namespace Ders_3.Controllers
 			bookPatch.ApplyTo(entity);
 			return NoContent(); // 204
         }
+
+		// 
 	}
 }

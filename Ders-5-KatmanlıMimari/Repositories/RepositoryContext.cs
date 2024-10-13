@@ -1,5 +1,5 @@
-﻿using Ders_5_KatmanlıMimari.Models;
-using Ders_5_KatmanlıMimari.Repositories.Config;
+﻿using Ders_5_KatmanlıMimari.Repositories.Config;
+using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ders_5_KatmanlıMimari.Repositories

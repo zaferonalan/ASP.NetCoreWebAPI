@@ -1,4 +1,4 @@
-﻿using Ders_5_KatmanlıMimari.Models;
+﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

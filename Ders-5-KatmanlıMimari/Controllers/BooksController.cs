@@ -1,5 +1,5 @@
-﻿using Ders_5_KatmanlıMimari.Models;
-using Ders_5_KatmanlıMimari.Repositories;
+﻿using Ders_5_KatmanlıMimari.Repositories;
+using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -8,11 +8,11 @@ namespace Ders_5_KatmanlıMimari.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class BookController : ControllerBase
+	public class BooksController : ControllerBase
 	{
 		private readonly RepositoryContext _Context;
 
-		public BookController( RepositoryContext context)
+		public BooksController( RepositoryContext context)
 		{
 			_Context = context;
 		}
@@ -156,4 +156,4 @@ namespace Ders_5_KatmanlıMimari.Controllers
 	}
 
 }
-}
+
